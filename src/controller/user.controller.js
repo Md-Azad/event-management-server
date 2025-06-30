@@ -43,6 +43,7 @@ const loginUser =
     try {
       const { users } = getCollection();
       const { email, password } = req.body;
+
       const user = await users.findOne({ email });
       console.log(user);
       if (user?.password !== password && user?.email !== email) {

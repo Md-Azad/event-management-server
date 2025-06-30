@@ -2,6 +2,7 @@ const config = require("./config");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
 let users; // Declare users variable in module scope
+let events;
 
 async function dbConnection() {
   const uri = config.database_url;
@@ -16,6 +17,7 @@ async function dbConnection() {
   try {
     await client.connect();
     users = client.db().collection("users");
+    events = client.db().collection("events");
     console.log("db connected");
   } catch (error) {
     console.log("something went wrong on Database", error);
@@ -25,6 +27,7 @@ async function dbConnection() {
 const getCollection = () => {
   return {
     users,
+    events,
   };
 };
 

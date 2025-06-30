@@ -1,14 +1,11 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
-const generateToken = (req, res) => {
-  const { email } = req.body;
-
+const generateToken = (email) => {
   const token = jwt.sign({ email }, config.token, {
-    expiresIn: "2",
+    expiresIn: "2h",
   });
-  res.send({ token });
-  next();
+  return token;
 };
 
 module.exports = generateToken;
